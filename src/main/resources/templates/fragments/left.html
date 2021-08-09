@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head></head>
+<body>
+    <div class="nav" th:fragment="leftFragment">
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="nav-list">
+            <li>
+                <a href="/">
+                    <i class="fa fa-dashboard"></i> <span>메인으로</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-laptop"></i> <span>직원 관리</span>
+                    <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/employees1"><i class="fa fa-circle-o"></i> 목록(ajax)</a></li>
+                    <li><a href="/employees2"><i class="fa fa-circle-o"></i> 목록(thymeleaf)</a></li>
+                    <li><a href="/clientMain"><i class="fa fa-circle-o"></i> 직원 추가</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

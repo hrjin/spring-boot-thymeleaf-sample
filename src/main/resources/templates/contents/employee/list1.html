@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
+<head>
+    <title>직원 리스트</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <script>
+        // 리스트 호출
+        var getList = function () {
+            procCallAjax("/emps", "GET", null, getEmployeeList);
+        };
+
+        var getEmployeeList = function(data) {
+            var employeeList = data.data;
+
+            var resultArea = $("#contentBody");
+            var htmlString = [];
+
+            $.each(employeeList, function (index, item) {
+                htmlString.push('<tr>'
+                    + '<td>' + item.employee_name + '</td>'
+                    + '<td>' + item.employee_age + '</td>'
+                    + '<td>' + item.employee_salary + '</td>'
+                    + '</tr>');
+            });
+
+            resultArea.html(htmlString);
+        };
+
+        // ON LOAD
+        $(document.body).ready(function() {
+            getList();
+        });
+    </script>
+
+</head>
+<div class="contents" layout:fragment="content">
+    <table class="type11">
+        <thead>
+        <tr>
+            <th scope="cols">이름</th>
+            <th scope="cols">나이</th>
+            <th scope="cols">연봉</th>
+        </tr>
+        </thead>
+        <tbody id="contentBody">
+        </tbody>
+    </table>
+</div>
+</html>

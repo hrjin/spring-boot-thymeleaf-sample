@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lagn="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <meta charset="UTF-8" />
+        <!-- 공통으로 쓰이는 css파일을 넣는다.-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+        <!-- 컨텐츠페이지의 CSS 영역이 들어감 -->
+        <!--<th:block layout:fragment="css"></th:block>-->
+
+        <!-- 공통으로 쓰이는 css파일을넣는다.-->
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+        <!-- Custom common css -->
+        <link rel="stylesheet" type="text/css" href="/resources/static/css/common.css" th:href="@{css/common.css}"/>
+
+        <!-- Custom common css -->
+        <script th:src="@{js/common.js}"></script>
+
+    </head>
+    <body>
+        <!-- header -->
+        <header th:replace="fragments/header :: headerFragment"></header>
+
+        <div class="containerLayout">
+            <!-- left -->
+            <div th:replace="fragments/left  :: leftFragment"></div>
+
+            <!-- contents -->
+            <div layout:fragment="content"></div>
+
+        </div>
+        <!-- footer -->
+        <footer th:replace="fragments/footer :: footerFragment"></footer>
+
+    </body>
+</html>
