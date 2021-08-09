@@ -1,6 +1,7 @@
 package com.example.springboot.thymeleaf.sample.service;
 
 import com.example.springboot.thymeleaf.sample.common.RestTemplateService;
+import com.example.springboot.thymeleaf.sample.model.EmployeeInfo;
 import com.example.springboot.thymeleaf.sample.model.EmployeeList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
@@ -23,5 +24,9 @@ public class EmployeeService {
 
     public EmployeeList getEmployees() {
         return restTemplateService.send("/employees", HttpMethod.GET, null, EmployeeList.class);
+    }
+
+    public EmployeeInfo getEmployee(String id) {
+        return restTemplateService.send("/employee/" + id, HttpMethod.GET, null, EmployeeInfo.class);
     }
 }
