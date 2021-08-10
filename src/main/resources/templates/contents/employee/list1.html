@@ -18,6 +18,7 @@
 
             $.each(employeeList, function (index, item) {
                 htmlString.push('<tr>'
+                    + '<td>' + (index + 1) + '</td>'
                     + '<td><a href="javascript:void(0);" onclick="getEmployee(' + item.id + ')">' + item.employee_name + '</a></td>'
                     + '<td>' + item.employee_age + '</td>'
                     + '</tr>');
@@ -43,6 +44,7 @@
     <table class="type11">
         <thead>
         <tr>
+            <th scope="cols">순서</th>
             <th scope="cols">이름</th>
             <th scope="cols">나이</th>
         </tr>

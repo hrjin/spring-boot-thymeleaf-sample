@@ -43,8 +43,8 @@ public class EmployeeController {
      * @return
      */
     @GetMapping("/employees2")
-    public String moveEmployeesPage2(Model model) {
-        model.addAttribute("employeeList", employeeService.getEmployees());
+    public String moveEmployeesPage2(Model model, @RequestParam(defaultValue = "1") int page) {
+        model.addAttribute("employeeList", employeeService.getEmployees(page));
         return "contents/employee/list2";
     }
 
@@ -56,8 +56,8 @@ public class EmployeeController {
      */
     @GetMapping("/emps")
     @ResponseBody
-    public EmployeeList getEmployees() {
-        return employeeService.getEmployees();
+    public EmployeeList getEmployees(@RequestParam(defaultValue = "1") int page) {
+        return employeeService.getEmployees(page);
     }
 
 
@@ -86,6 +86,13 @@ public class EmployeeController {
     }
 
 
+    /**
+     * 직원 추가
+     *
+     * @param employee
+     * @param model
+     * @return
+     */
     @PostMapping("/emps")
     public String createEmployee(@ModelAttribute(value = "employee") NewEmployee employee, Model model) {
         NewEmployeeInfo newEmployee = employeeService.createEmployee(employee);

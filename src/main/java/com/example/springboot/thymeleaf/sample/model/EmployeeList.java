@@ -14,4 +14,5 @@ public class EmployeeList {
     private List<Employee> data;
     private String message;
 
+    private int totalCnt;
 }

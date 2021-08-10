@@ -63,3 +63,16 @@ table.type11 td {
     border-bottom: 1px solid #ccc;
     background: #eee;
 }
+
+/* paging */
+.pagination {
+    display: inline-block;
+}
+
+.pagination a {
+    font-weight: bold;
+    color: darkgreen;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
