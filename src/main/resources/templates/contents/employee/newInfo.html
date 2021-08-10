@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
+<head>
+    <title>추가된 직원 상세 조회</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<div class="contents" layout:fragment="content">
+    <h1>추가된 직원 상세 정보</h1>
+    <table class="type11">
+        <thead>
+        <tr>
+            <th scope="cols">이름</th>
+            <th scope="cols">나이</th>
+            <th scope="cols">연봉</th>
+        </tr>
+        </thead>
+        <tbody id="contentBody">
+        <tr>
+            <td th:text="${newEmployee.name}"></td>
+            <td th:text="${newEmployee.age}"></td>
+            <td th:text="${newEmployee.salary}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</html>

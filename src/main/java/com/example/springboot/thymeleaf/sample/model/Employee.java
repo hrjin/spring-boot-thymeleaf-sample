@@ -11,6 +11,6 @@ import lombok.Data;
 public class Employee {
     private String id;
     private String employee_name;
-    private String employee_salary;
-    private String employee_age;
+    private int employee_salary;
+    private int employee_age;
 }

@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
+<head>
+    <title>직원 추가</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <script>
+        var goHome = function() {
+          procMovePage("/");
+        };
+
+        // ON LOAD
+        $(document.body).ready(function() {
+        });
+    </script>
+</head>
+<div class="contents" layout:fragment="content">
+    <h1>직원 추가</h1>
+    <form action="#" th:action="@{/emps}" th:object="${employee}" method="POST">
+        <div>
+            이름 : <input type="text" name="name" value="" placeholder="이름 입력"><br>
+            나이 : <input type="text" name="age" value="" placeholder="나이 입력"><br>
+            연봉 : <input type="text" name="salary" value="" placeholder="연봉 입력">
+        </div>
+        <div>
+            <button type="submit">생성</button>
+            <input type="button" onclick="goHome();" value="취소">
+        </div>
+    </form>
+</div>
+</html>

@@ -2,13 +2,13 @@ package com.example.springboot.thymeleaf.sample.controller;
 
 import com.example.springboot.thymeleaf.sample.model.EmployeeInfo;
 import com.example.springboot.thymeleaf.sample.model.EmployeeList;
+import com.example.springboot.thymeleaf.sample.model.NewEmployee;
+import com.example.springboot.thymeleaf.sample.model.NewEmployeeInfo;
 import com.example.springboot.thymeleaf.sample.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author hrjin
@@ -73,5 +73,28 @@ public class EmployeeController {
         EmployeeInfo employeeInfo = employeeService.getEmployee(id);
         model.addAttribute("employee", employeeInfo.getData());
         return "contents/employee/info";
+    }
+
+    /**
+     * 직원 추가 페이지
+     *
+     * @return
+     */
+    @GetMapping("/employee/create")
+    public String createEmployeePage() {
+        return "contents/employee/create";
+    }
+
+
+    @PostMapping("/emps")
+    public String createEmployee(@ModelAttribute(value = "employee") NewEmployee employee, Model model) {
+        NewEmployeeInfo newEmployee = employeeService.createEmployee(employee);
+        System.out.println("============================");
+        System.out.println(newEmployee.toString());
+        System.out.println("============================");
+
+        model.addAttribute("newEmployee", newEmployee.getData());
+
+        return "contents/employee/newInfo";
     }
 }
