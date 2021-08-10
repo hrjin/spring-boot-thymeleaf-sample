@@ -1,5 +1,6 @@
 package com.example.springboot.thymeleaf.sample.common;
 
+import com.example.springboot.thymeleaf.sample.exception.MyException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,9 +81,10 @@ public class RestTemplateService {
             LOGGER.info("resEntity.getBody() ::: " + resEntity.getBody());
         } catch (HttpStatusCodeException exception) {
             LOGGER.info("HttpStatusCodeException API Call URL : {}, errorCode : {}, errorMessage : {}", reqUrl, exception.getRawStatusCode(), exception.getMessage());
+            throw new MyException(exception.getRawStatusCode(), exception.getMessage());
         }
 
-        if (resEntity.getBody() != null) {
+        if (resEntity != null) {
             LOGGER.info("RESPONSE-TYPE: {}", resEntity.getBody().getClass());
         } else {
             LOGGER.info("RESPONSE-TYPE: RESPONSE BODY IS NULL");

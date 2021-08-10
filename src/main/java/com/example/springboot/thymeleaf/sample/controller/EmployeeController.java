@@ -89,10 +89,6 @@ public class EmployeeController {
     @PostMapping("/emps")
     public String createEmployee(@ModelAttribute(value = "employee") NewEmployee employee, Model model) {
         NewEmployeeInfo newEmployee = employeeService.createEmployee(employee);
-        System.out.println("============================");
-        System.out.println(newEmployee.toString());
-        System.out.println("============================");
-
         model.addAttribute("newEmployee", newEmployee.getData());
 
         return "contents/employee/newInfo";

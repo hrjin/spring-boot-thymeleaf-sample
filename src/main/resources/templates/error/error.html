@@ -3,10 +3,29 @@
 <head>
     <title>Error page</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="css/error.css" th:href="@{/css/error.css}" />
+    <!-- Custom common css -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/common.css}"/>
+
+    <!-- Custom common css -->
+    <script th:src="@{/js/common.js}"></script>
+
+    <script>
+        var goHome = function() {
+            procMovePage("/");
+        };
+
+    </script>
 </head>
 <body>
-<img th:src="${src}">
-<p th:text="${msg}"></p>
+    <h1 style="text-align: center">Error Page!!!</h1>
+
+    <img th:src="${src}" style="display: block; margin: 0 auto;">
+
+    <p style="text-align: center" th:text="${msg}"></p>
+
+    <div style="margin: auto;">
+        <input style="margin: auto; display: block;" type="button" onclick="goHome();" value="메인으로">
+    </div>
+
 </body>
 </html>

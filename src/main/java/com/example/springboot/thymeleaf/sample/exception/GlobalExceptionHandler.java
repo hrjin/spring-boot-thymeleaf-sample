@@ -4,9 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.client.HttpClientErrorException;
 
 /**
@@ -16,9 +17,11 @@ import org.springframework.web.client.HttpClientErrorException;
  * @version 1.0
  * @since 2021.08.08
  **/
-@RestControllerAdvice
+@ControllerAdvice
 public class GlobalExceptionHandler extends RuntimeException {
     private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+
+    private static String IMAGE_PATH = "/images/error/error.jpg";
 
     public GlobalExceptionHandler() {
     }
@@ -44,10 +47,18 @@ public class GlobalExceptionHandler extends RuntimeException {
 
 
     @ExceptionHandler({NullPointerException.class})
-    @ResponseBody
-    public ErrorMessage nullException(NullPointerException ex) {
+    public String nullException(NullPointerException ex, Model model) {
         LOGGER.info("NullPointerException >>> " + ex);
-        return new ErrorMessage(HttpStatus.TOO_MANY_REQUESTS.value(), ex.getLocalizedMessage());
+        model.addAttribute("src", IMAGE_PATH);
+        model.addAttribute("msg", HttpStatus.NOT_FOUND.value() + " : " + ex.getMessage());
+        return "error/error";
     }
 
+    @ExceptionHandler({MyException.class})
+    public String myException(MyException ex, Model model) {
+        LOGGER.info("MyException >>> " + ex);
+        model.addAttribute("src", IMAGE_PATH);
+        model.addAttribute("msg", ex.getStatusCode() + " : " + ex.getDetailMessage());
+        return "error/error";
+    }
 }
